@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>HTML5</title>
+    <meta charset="utf-8">
+
+    <style type="text/css">
+    nav { background:white; position:fixed; top:0; right:0; }
+
+    main > div { background:red; height:1000px; }  
+    main > div#vista_2 { background:blue; }  
+    main > div#vista_3 { background:green; }  
+
+    main > * { display: none; }
+    main > *:last-child { display: block; }
+    @keyframes appear {
+      from { width:0; opacity:0; }
+      to { width:100%; opacity:1; }
+    }
+    main > *:target { display: block; animation: appear 0.1s linear 1; }
+    main > *:target ~ * { display: none; }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+    </script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav role="navigation">
+      <ul>
+        <li><a href="#vista_1">Vista 1</a></li>
+        <li><a href="#vista_2">Vista 2</a></li>
+        <li><a href="#vista_3">Vista 3</a></li>
+      </ul>
+    </nav>
+
+    <main role="main">
+
+      <div id="vista_2">
+        <h1>Vista 2</h1>
+      </div>
+
+      <div id="vista_3">
+        <h1>Vista 3</h1>
+      </div>
+
+      <div id="vista_1">
+        <h1>Vista 1</h1>
+      </div>
+
+    </main>
+
+    <script>
+
+    var app = (function(window) {
+
+      'use strict';
+
+      var spapp  = {};
+      
+      spapp.routes = {};
+
+      spapp.options = function(options) { spapp.defaultView = options.defaultView; }
+
+      spapp.addRoute = function(options) {
+        spapp.routes[options.view] = {
+          view     : options.view,
+          onCreate : options.onCreate,
+          onReady  : options.onReady
+        }
+      }
+
+      spapp.routeChange = function() {
+        spapp.routeID   = location.hash.slice(1);
+        spapp.route     = spapp.routes[app.routeID];
+        spapp.routeElem = document.getElementById(app.routeID);
+        if( ! spapp.routeElem) { console.log(spapp.routeID+" non defniita"); return; }
+
+        if((" "+spapp.routeElem.className+" ").replace(/[\n\t]/g, " ").indexOf("spapp-created") > -1 ) {
+          spapp.route.onReady();
+        } else {
+          spapp.routeElem.className += " spapp-created";
+          spapp.route.onCreate();
+          spapp.route.onReady();
+        }
+        console.log(spapp);
+      }
+
+      spapp.run = function() {
+        window.addEventListener('hashchange', function() { spapp.routeChange(); });
+        if( ! window.location.hash) { window.location.hash = spapp.defaultView; } else { spapp.routeChange(); }
+      }
+
+      return spapp;
+
+    })(window);
+
+    app.options({defaultView : 'vista_1'});
+    app.addRoute({
+      view: 'vista_1',
+      onCreate: function() { console.log('creao vista 1'); },
+      onReady: function() { console.log('visualizzo vista 1'); },
+    });
+    app.addRoute({
+      view: 'vista_2',
+      onCreate: function() { console.log('creao vista 2'); },
+      onReady: function() { console.log('visualizzo vista 2'); },
+    });
+    app.addRoute({
+      view: 'vista_3',
+      onCreate: function() { console.log('creao vista 3'); },
+      onReady: function() { console.log('visualizzo vista 3'); },
+    });
+    app.run();
+
+    </script>
+
+  </body>
+
+</html>
+
