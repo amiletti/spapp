@@ -54,6 +54,7 @@
 
     </main>
 
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script>
 
     var app = (function(window) {
@@ -61,10 +62,8 @@
       'use strict';
 
       var spapp  = {};
-      
       spapp.routes = {};
-
-      spapp.options = function(options) { spapp.defaultView = options.defaultView; }
+      spapp.defaultView = 'vista_1';
 
       spapp.addRoute = function(options) {
         spapp.routes[options.view] = {
@@ -78,7 +77,7 @@
         spapp.routeID   = location.hash.slice(1);
         spapp.route     = spapp.routes[app.routeID];
         spapp.routeElem = document.getElementById(app.routeID);
-        if( ! spapp.routeElem) { console.log(spapp.routeID+" non defniita"); return; }
+        if( ! spapp.routeElem || ! spapp.route) { console.log(spapp.routeID+" not defined"); return; }
 
         if((" "+spapp.routeElem.className+" ").replace(/[\n\t]/g, " ").indexOf("spapp-created") > -1 ) {
           spapp.route.onReady();
@@ -87,7 +86,6 @@
           spapp.route.onCreate();
           spapp.route.onReady();
         }
-        console.log(spapp);
       }
 
       spapp.run = function() {
@@ -99,21 +97,20 @@
 
     })(window);
 
-    app.options({defaultView : 'vista_1'});
     app.addRoute({
       view: 'vista_1',
-      onCreate: function() { console.log('creao vista 1'); },
-      onReady: function() { console.log('visualizzo vista 1'); },
+      onCreate: function() { $("#vista_1").load("./tpl/vista_1.html"); },
+      onReady: function() { console.log('showing view 1'); },
     });
     app.addRoute({
       view: 'vista_2',
-      onCreate: function() { console.log('creao vista 2'); },
-      onReady: function() { console.log('visualizzo vista 2'); },
+      onCreate: function() { console.log('create view 2'); },
+      onReady: function() { console.log('showing view 2'); },
     });
     app.addRoute({
       view: 'vista_3',
-      onCreate: function() { console.log('creao vista 3'); },
-      onReady: function() { console.log('visualizzo vista 3'); },
+      onCreate: function() { console.log('create view 3'); },
+      onReady: function() { console.log('showing view 3'); },
     });
     app.run();
 
