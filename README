@@ -1,1 +1,16 @@
-Simple single page application library.
+# Simple single page application library.
+
+Spapp is a simple library that help to create single page application.
+
+## Usage
+
+* * *
+
+** main html structure
+```html
+<!-- main wrapper, need id="spapp" to work -->
+<main id="spapp" role="main">
+  <!-- sections -->
+  <section id="view2"></section>
+</main>
+```
