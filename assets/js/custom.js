@@ -7,8 +7,8 @@ $(document).ready(function() {
   // define routes
   app.route({
     view: 'view1',
-    onCreate: function() { $("#view1").append($.now()+': Writed on create<br/>'); },
-    onReady: function() { $("#view1").append($.now()+': Writed on ready<br/>'); }
+    onCreate: function() { $("#view1").append($.now()+': Written on create<br/>'); },
+    onReady: function() { $("#view1").append($.now()+': Written when ready<br/>'); }
   });
   app.route({view: 'view2', load: 'view2.html' });
   app.route({
