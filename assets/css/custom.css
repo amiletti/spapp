@@ -54,7 +54,7 @@ nav ul li { display:block; float:left; width:33.33%; text-align:center; }
 nav ul li a { color:#fff; text-decoration:none; }
 
 main#spapp > section { padding:60px 10px 10px 10px; background:#ffcdd2; }  
-main#spapp > section#view2 { background:#90caf9; }  
-main#spapp > section#view3 { background:#a5d6a7; } 
-main#spapp > section#error404 { background:#b71c1c; color:#fff; }
+main#spapp > section#view_2 { background:#90caf9; }  
+main#spapp > section#view_3 { background:#a5d6a7; } 
+main#spapp > section#error_404 { background:#b71c1c; color:#fff; }
 main#spapp h1 { font-size: 4.2rem; line-height: 110%; margin: 2.1rem 0 1.68rem 0; text-align:center; }

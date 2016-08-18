@@ -6,9 +6,9 @@
     var config, routes = {};
 
     config = $.extend({
-      defaultView : $("main#spapp > section:last-child").attr("id"),
-      templateDir : './tpl/',
-      error404    : false
+      defaultView  : $("main#spapp > section:last-child").attr("id"),
+      templateDir  : './tpl/',
+      pageNotFound : false
     }, options );
 
     $("main#spapp > section").each(function(k, e) {
@@ -30,8 +30,8 @@
       var elm   = $("#"+id);
 
       if( ! elm || ! route) {
-        if(config.error404) {
-          window.location.hash = config.error404;
+        if(config.pageNotFound) {
+          window.location.hash = config.pageNotFound;
           return;
         }
         console.log(id+" not defined");
