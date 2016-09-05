@@ -28,7 +28,7 @@ Some rules:
 ----------
 JS
 -------------
-When you had set your html you can write the javascript to run the plugin. First of all init the app via `$.spapp()`, add your route and finally run the app. At the end you should have a snippet like this
+When you have set your html you can write the javascript to run the plugin. First of all init the app via `$.spapp()`, add your route and finally run the app. At the end you should have a snippet like this
 ```js
 var app = $.spapp({
   defaultView  : "#view_xxx",
