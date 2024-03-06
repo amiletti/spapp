@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   $("main#spapp > section").height($(document).height() - 60);
 
-  var app = $.spapp({pageNotFound : 'error_404'}); // initialize
+  var app = $.spapp({pageNotFound : 'error_404', reloadView: true}); // initialize
 
   // define routes
   app.route({
