@@ -8,7 +8,8 @@
     config = $.extend({
       defaultView  : $("main#spapp > section:last-child").attr("id"),
       templateDir  : './tpl/',
-      pageNotFound : false
+      pageNotFound : false,
+      reloadView   : false
     }, options );
 
     $("main#spapp > section").each(function(k, e) {
@@ -28,6 +29,7 @@
       var id    = location.hash.slice(1);
       var route = routes[id];
       var elm   = $("#"+id);
+      var prevSection = $(".spapp-created")
 
       if( ! elm || ! route) {
         if(config.pageNotFound) {
@@ -37,6 +39,13 @@
         console.log(id+" not defined");
         return;
       }
+
+
+      if(config.reloadView) {
+        prevSection.empty();
+        prevSection.removeClass("spapp-created");
+      }
+
 
       if(elm.hasClass("spapp-created")) {
         route.onReady();

@@ -33,7 +33,8 @@ When you have set your html you can write the javascript to run the plugin. Firs
 var app = $.spapp({
   defaultView  : "#view_xxx",
   templateDir  : "./tpl/",
-  pageNotFound : "error_404"
+  pageNotFound : "error_404", 
+  reloadView   : true
 });
 
 app.route({
@@ -51,6 +52,7 @@ On init ou can pass an object to the plugin to set the main config, detail of **
  - **defaultView** is the view will be launched if the url does not have an hash
  - **templateDir**  is the directory where the plugin try to find any html file to load in `<section>` tags
  - **pageNotFound** is the view to use when the hash in the url don't mach any defined routes
+- **reloadView** is the option to remove the previous section after route change
 
 After this you need to define your routes. The basic routes object was automatically created at the init of the plugin following the `<main id="spapp">` tag. To extend functionality you can define every single view with the `route()` method.
 The options of the route method are the foillowing:
